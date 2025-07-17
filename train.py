@@ -47,7 +47,7 @@ f1 = f1_score(y_test, predictions, average="macro")
 
 print("Accuracy:", str(round(accuracy, 2) * 100) + "%", "F1:", round(f1, 2))
 
-with open("Results/metrics.txt", "w") as outfile:
+with open("Results/metrics.txt", "w+") as outfile:
     outfile.write(f"\nAccuracy = {accuracy.round(2)}, F1 Score = {f1.round(2)}.")
 
 cm = confusion_matrix(y_test, predictions, labels=pipeline.classes_)
@@ -56,5 +56,3 @@ disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
 sio.dump(pipeline, "Model/drug_pipeline.skops")
-
-model = sio.load("Model/drug_pipeline.skops", trusted=True)
