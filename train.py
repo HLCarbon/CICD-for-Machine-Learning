@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
+import os
 
 import skops.io as sio
 
@@ -47,6 +48,7 @@ f1 = f1_score(y_test, predictions, average="macro")
 
 print("Accuracy:", str(round(accuracy, 2) * 100) + "%", "F1:", round(f1, 2))
 
+os.makedirs("Results", exist_ok=True)
 with open("Results/metrics.txt", "w+") as outfile:
     outfile.write(f"\nAccuracy = {round(accuracy, 2)}, F1 Score = {round(f1, 2)}.")
 
@@ -54,4 +56,5 @@ cm = confusion_matrix(y_test, predictions, labels=pipeline.classes_)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=pipeline.classes_)
 plt.savefig("Results/model_results.png", dpi=120)
 
+os.makedirs("Model", exist_ok=True)
 sio.dump(pipeline, "Model/drug_pipeline.skops")
