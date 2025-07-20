@@ -53,6 +53,5 @@ gr.Interface(
     examples=examples,
     title=title,
     description=description,
-    article=article,
     theme=gr.themes.Soft(),
 ).launch()
