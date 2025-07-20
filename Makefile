@@ -1,3 +1,5 @@
+HUGGING_FACE_SPACE = "Drug-Classification-MLOps"
+
 install:
 	pip install --upgrade pip &&\
 	pip install -r requirements.txt
@@ -32,8 +34,8 @@ hf-login:
 	huggingface-cli login --token $(HUGGINGFACE_KEY) --add-to-git-credential
 
 push-hub:
-	huggingface-cli upload HLCarbon/Drug-Classification ./App --repo-type=space --commit-message="Sync App files"
-	huggingface-cli upload HLCarbon/Drug-Classification ./Model /Model --repo-type=space --commit-message="Sync Model"
-	huggingface-cli upload HLCarbon/Drug-Classification ./Results /Metrics --repo-type=space --commit-message="Sync Model"
+	huggingface-cli upload $(HUGGING_FACE_SPACE) ./App --repo-type=space --commit-message="Sync App files"
+	huggingface-cli upload $(HUGGING_FACE_SPACE) ./Model /Model --repo-type=space --commit-message="Sync Model"
+	huggingface-cli upload $(HUGGING_FACE_SPACE) ./Results /Metrics --repo-type=space --commit-message="Sync Model"
 
 deploy: hf-login push-hub
