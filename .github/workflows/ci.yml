@@ -1,4 +1,5 @@
 name: Continuous Integration
+run-name: Run triggered by ${{ github.event_name }} on branch ${{ github.ref_name }} by ${{ github.actor }}
 on:
   push:
     branches: [ "main" ]
