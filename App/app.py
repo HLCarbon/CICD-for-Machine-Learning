@@ -45,6 +45,7 @@ examples = [
 
 title = "Drug Classification"
 description = "Enter the details to correctly identify Drug type?"
+article = "Try as many times as you want!"
 
 gr.Interface(
     fn=predict_drug,
@@ -53,5 +54,6 @@ gr.Interface(
     examples=examples,
     title=title,
     description=description,
+    article=article,
     theme=gr.themes.Soft(),
 ).launch()
