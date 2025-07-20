@@ -1,12 +1,11 @@
 name: Continuous Integration
-run-name: Run triggered by ${{ github.event_name }} on branch ${{ github.ref_name }} by ${{ github.actor }}
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
-
+  
 permissions: write-all
 jobs:
   build:
@@ -22,11 +21,10 @@ jobs:
         run: make train
       - name: Evaluation
         env:
-          REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make eval
-      - name: Update branch
-        env: 
-          NAME: ${{secrets.USER_NAME}}
-          EMAIL: ${{secrets.USER_EMAIL}}
+      - name: Update Branch
+        env:
+          NAME: ${{ secrets.USER_NAME }}
+          EMAIL: ${{ secrets.USER_EMAIL }}
         run: make update-branch USER_NAME=$NAME USER_EMAIL=$EMAIL
-      
